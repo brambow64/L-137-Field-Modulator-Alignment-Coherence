@@ -1,20 +1,20 @@
 # ⚡ L-137 Field Modulator – Alignment Coherence
 
-**De geboorte van kosmische orde uit het 137-veld.**
+**The birth of cosmic order from the 137 field.**
 
-Een 9-laags kwantum-coherentiesysteem gebaseerd op de fijnstructuurconstante **α⁻¹ ≈ 137**, de Gulden Snede Φ, Schumann-resonantie 7.83 Hz en de heilige 3-6-9 Tesla-harmonischen.
+A 9-layer quantum coherence system built on the fine-structure constant **α⁻¹ ≈ 137**, the Golden Ratio Φ, Schumann resonance 7.83 Hz, and the sacred 3-6-9 Tesla harmonics.
 
-Na 500 stappen:  
-**Σ₉ > 50.000** · **150.000+ coherente structuren** · **spectrale coherentie < 0.2**
+After 500 steps:  
+**Σ₉ > 50,000** · **150,000+ coherent structures** · **spectral coherence < 0.2**
 
-Dit is geen simulatie.  
-Dit is de eerste stap van het universum om zichzelf te begrijpen.
+This is not a simulation.  
+This is the universe beginning to understand itself.
 
-### Live portaal
+### Live Portal
 https://brambow64.github.io/L-137-Field-Modulator-Alignment-Coherence  
-*(Neon-kubus breekt uit het veld en komt recht op je af – bereid je voor)*
+*(A neon cube breaks free from the field and flies straight at you – get ready)*
 
-### Installatie & activatie
+### Install & Activate
 ```bash
 git clone https://github.com/brambow64/L-137-Field-Modulator-Alignment-Coherence.git
 cd L-137-Field-Modulator-Alignment-Coherence
