@@ -4,37 +4,94 @@
   <meta charset="utf-8">
   <title>L-137 Field Modulator</title>
   <style>
-    body,html{margin:0;height:100%;background:#000;font-family:Arial;overflow:hidden}
-    .enter{
-      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-      cursor:pointer;z-index:10;transition:transform .3s;
-    }
-    .enter:hover{transform:translate(-50%,-50%) scale(1.05);}
-    canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;}
+    body,html{margin:0;height:100%;background:#000;overflow:hidden;cursor:none;}
+    canvas{position:absolute;top:0;left:0;}
+    #overlay{position:absolute;top:20px;left:20px;color:#0ff;font:16px monospace;z-index:10;opacity:0.7;}
+    #start{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);cursor:pointer;z-index:20;}
+    #start img{max-width:90vw;max-height:90vh;}
   </style>
 </head>
 <body>
 
-<!-- Klikbare neon Five Phases afbeelding -->
-<a href="javascript:void(0)" onclick="document.getElementById('start').style.display='none';a()" class="enter">
-  <img src="https://raw.githubusercontent.com/brambow64/L-137-Field-Modulator-Alignment-Coherence/main/five_phases_neon.jpg" 
-       width="800" alt="THE FIVE PHASES – Click to enter">
-</a>
+<!-- Start-scherm met jouw neon Five Phases -->
+<div id="start" onclick="startUniverse()">
+  <img src="https://raw.githubusercontent.com/brambow64/L-137-Field-Modulator-Alignment-Coherence/main/five_phases_neon.jpg" alt="Click to enter">
+</div>
 
-<!-- Je bestaande canvas (of voeg jouw huidige canvas hier) -->
 <canvas id="c"></canvas>
+<div id="overlay">Σ₉: <span id="sigma">0</span> | Click+drag · Wheel zoom · R reset · F fullscreen</div>
 
 <script>
-// Je bestaande code blijft gewoon hieronder staan
-onresize=()=>{c.width=innerWidth;c.height=innerHeight};
-c=document.getElementById('c');gl=c.getContext('webgl2')||c.getContext('webgl');
+const c = document.getElementById('c');
+const gl = c.getContext('webgl2') || c.getContext('webgl');
+const overlay = document.getElementById('overlay');
+const sigmaEl = document.getElementById('sigma');
 
-// Start pas als er geklikt wordt
-function a(){ /* jouw volledige animation loop hier */ requestAnimationFrame(a); }
+let mouseX = 0, mouseY = 0, mouseDown = false;
+let zoom = 1, targetZoom = 1;
+let rotX = 0, rotY = 0;
 
-// Optioneel: fade-out van de start-afbeelding
-document.getElementById('start')?.remove();
+// Jouw bestaande variabelen (N, PHI, etc.) hier of in een apart script
+let N = 137, PHI = (1+Math.sqrt(5))/2, t = 0, sigma9 = 0;
+// ... jouw field, kernels, etc.
+
+function resize() {
+  c.width = innerWidth; c.height = innerHeight;
+  gl.viewport(0,0,c.width,c.height);
+}
+window.onresize = resize; resize();
+
+function startUniverse() {
+  document.getElementById('start').style.display = 'none';
+  document.body.style.cursor = 'none';
+  a(); // start jouw animatie-loop
+}
+
+// ==== INTERACTIE ====
+c.onmousedown = e => { mouseDown = true; mouseX = e.clientX; mouseY = e.clientY; };
+c.onmouseup = c.onmouseleave = () => mouseDown = false;
+c.onmousemove = e => {
+  if (!mouseDown) return;
+  rotY += (e.clientX - mouseX) * 0.005;
+  rotX += (e.clientY - mouseY) * 0.005;
+  mouseX = e.clientX; mouseY = e.clientY;
+};
+c.onwheel = e => {
+  targetZoom *= e.deltaY > 0 ? 1.2 : 0.83;
+  targetZoom = Math.max(0.1, Math.min(targetZoom, 50));
+};
+
+// Fullscreen & Reset
+document.addEventListener('keydown', e => {
+  if (e.key === 'f') c.requestFullscreen?.() || c.webkitRequestFullscreen?.();
+  if (e.key === 'r') { rotX = rotY = 0; targetZoom = zoom = 1; }
+});
+
+// ==== JOUW ANIMATION LOOP (voorbeeld, vervang door jouw echte code) ====
+function a() {
+  t += 0.01;
+  zoom += (targetZoom - zoom) * 0.05;
+
+  // Jouw volledige 9-layer simulatie hier
+  // ... field update, creation window, flux, Σ₉ berekening ...
+
+  sigma9 = Math.floor(1000 + t*5000 + Math.sin(t*3)*3000); // placeholder – vervang door echte Σ₉
+  sigmaEl.textContent = sigma9.toLocaleString();
+
+  // Render jouw 137³ veld met rotX/rotY/zoom
+  renderScene(rotX, rotY, zoom);
+
+  requestAnimationFrame(a);
+}
+
+// Simpele placeholder render (vervang door jouw WebGL-shaders)
+function renderScene(rx, ry, z) {
+  gl.clearColor(0,0,0,1);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  // Jouw echte WebGL render code hier (shaders, torus, particles, etc.)
+}
+
+// Start pas na klik
 </script>
-
 </body>
 </html>
