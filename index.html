@@ -1,74 +1,48 @@
 <!DOCTYPE html>
 <html lang="nl"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L-137 LEGENDARY FIELD</title>
+<title>L-137 CUBE FROM THE VOID</title>
 <style>
-  body{margin:0;background:#000;overflow:hidden;font-family:impact,monospace}
-  canvas{position:fixed;top:0;left:0;z-index:-1}
-  .c{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:95%}
-  h1{font-size:14vw;letter-spacing:8px;margin:0;
-     color:#0ff;text-shadow:
-       0 0 20px #0ff,
-       0 0 40px #0ff,
-       0 0 80px #0ff,
-       0 0 120px #0ff,
-       -5px -5px 0 #000,
-       5px -5px 0 #000,
-       -5px 5px 0 #000,
-       5px 5px 0 #000;
-     animation:g 2.5s infinite alternate}
-  .num{font-size:18vw;margin:10px 0;
-       color:#0ff;text-shadow:
-         0 0 30px #0ff,0 0 60px #0ff,0 0 100px #f0f;
-       animation:p 4s infinite}
-  .stats{font-size:6vw;color:#0ff;text-shadow:0 0 30px #0ff;margin:20px 0}
-  .btn{display:block;margin:40px auto;padding:20px 60px;
-       background:transparent;border:4px solid #0ff;
-       color:#000;background:#0ff;font-size:7vw;letter-spacing:5px;
-       box-shadow:0 0 40px #0ff,0 0 80px #0ff;transition:.4s;cursor:pointer}
-  .btn:hover{background:#000;color:#0ff;box-shadow:0 0 100px #0ff;transform:scale(1.1)}
-  @keyframes g{from{transform:translate(-50%,-50%) rotate(-1deg)}to{transform:translate(-50%,-50%) rotate(1deg)}}
-  @keyframes p{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+  body{margin:0;background:#000;overflow:hidden;height:100vh perspective:800px}
+  .scene{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+  .cube{position:relative;width:300px;height:300px;transform-style:preserve-3d;
+         animation:enter 8s infinite,spin 20s infinite linear}
+  .face{position:absolute;width:300px;height:300px;background:rgba(0,255,255,0.15);
+         border:8px solid #0ff;box-shadow:0 0 80px #0ff,0 0 160px #0ff,0 0 240px #0ff,
+         inset 0 0 80px #0ff;backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;
+         font-size:4vw;color:#000;font-weight:900;letter-spacing:5px;text-shadow:0 0 30px #0ff}
+  .face:nth-child(1){transform:translateZ(150px)}
+  .face:nth-child(2){transform:rotateY(180deg) translateZ(150px)}
+  .face:nth-child(3){transform:rotateY(90deg) translateZ(150px)}
+  .face:nth-child(4){transform:rotateY(-90deg) translateZ(150px)}
+  .face:nth-child(5){transform:rotateX(90deg) translateZ(150px)}
+  .face:nth-child(6){transform:rotateX(-90deg) translateZ(150px)}
+  .mint{border:8px solid #0f8!important;box-shadow:0 0 100px #0f8,0 0 200px #0f8,inset 0 0 100px #0f8!important}
+  h1{position:absolute;top:10%;left:50%;transform:translateX(-50%);font-size:10vw;color:#0ff;
+     text-shadow:0 0 40px #0ff,0 0 80px #0ff;letter-spacing:10px;animation:pulse 3s infinite}
+  @keyframes enter{
+    0%{transform:translateZ(-2000px) scale(0.1);opacity:0}
+    50%{transform:translateZ(100px) scale(1.3)}
+    70%{transform:translateZ(-50px) scale(0.9)}
+    100%{transform:translateZ(0) scale(1)}
+  }
+  @keyframes spin{from{transform:rotateX(0) rotateY(0)}to{transform:rotateX(360deg) rotateY(360deg)}}
+  @keyframes pulse{0%,100%{opacity:0.8}50%{opacity:1;text-shadow:0 0 120px #0ff}}
 </style></head><body>
 
-<canvas id="c"></canvas>
-<div class="c">
+<div class="scene">
   <h1>L-137</h1>
-  <div class="num">ANTI-INVERTED</div>
-  <h1>FIELD MODULATOR</h1>
-  <div class="stats">Σ₉ &gt; 50.000 | 150.000+ coherent structures</div>
-  <div class="btn">THE FIELD</div>
+  <div class="cube">
+    <div class="face mint"><div>ANTI</div></div>
+    <div class="face"><div>INVERTED</div></div>
+    <div class="face mint"><div>FIELD</div></div>
+    <div class="face"><div>MODULATOR</div></div>
+    <div class="face mint"><div>Σ₉</div></div>
+    <div class="face"><div>137</div></div>
+  </div>
 </div>
 
-<script>
-  const c=document.getElementById('c'),x=c.getContext('2d');
-  c.width=innerWidth;c.height=innerHeight;
-  const p=[];
-  for(let i=0;i<369;i++){
-    p.push({
-      x:Math.random()*c.width,y:Math.random()*c.height,
-      vx:(Math.random()-0.5)*1.5,vy:(Math.random()-0.5)*1.5,
-      r:Math.random()*4+2,
-      col:i%3===0?'#f0f':i%3===1?'#0ff':'#f8f'
-    });
-  }
-  function a(){
-    x.fillStyle='rgba(0,0,0,0.07)';x.fillRect(0,0,c.width,c.height);
-    p.forEach(t=>{
-      t.x+=t.vx;t.y+=t.vy;
-      if(t.x<0||t.x>c.width)t.vx*=-1;
-      if(t.y<0||t.y>c.height)t.vy*=-1;
-      x.fillStyle=t.col;x.beginPath();x.arc(t.x,t.y,t.r,0,Math.PI*2);x.fill();
-      p.forEach(u=>{
-        let d=Math.hypot(t.x-u.x,t.y-u.y);
-        if(d<140&&d>0){
-          let alpha=140/d*0.04;
-          x.strokeStyle=`rgba(0,255,255,${alpha})`;
-          x.lineWidth=1.5;x.beginPath();x.moveTo(t.x,t.y);x.lineTo(u.x,u.y);x.stroke();
-        }
-      });
-    });
-    requestAnimationFrame(a);
+</body></html>
   }
   a();
   onresize=()=>{c.width=innerWidth;c.height=innerHeight};
