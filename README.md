@@ -1,4 +1,8 @@
-# ⚡ L-137 Field Modulator – Alignment Coherence
+L-137 Field Modulator
+A living mathematical universe – 23 november 2025
+
+[Live Demo] → https://brambow64.github.io/...
+[Scientific Paper] → L-137_Field_Modulator_Scientific_Paper_v1.pdf
 
 **The birth of cosmic order from the 137 field.**
 
