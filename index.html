@@ -1,87 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>L-137 Field Modulator – Alignment Coherence</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta charset="utf-8">
+  <title>L-137 Field Modulator</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top, #050816 0%, #02040a 40%, #000000 100%);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      color: #e9ecff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    body,html{margin:0;height:100%;background:#000;font-family:Arial;overflow:hidden}
+    .enter{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      cursor:pointer;z-index:10;transition:transform .3s;
     }
-
-    .hero-title {
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #5dd8ff; /* neon-blauw */
-      text-shadow: 0 0 18px rgba(93, 216, 255, 0.9);
-      margin: 0 1rem 0.4rem;
-    }
-
-    .hero-sub {
-      font-size: 0.9rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: #9bfca7; /* neon-groen */
-      margin-bottom: 1.6rem;
-    }
-
-    .tagline-box {
-      max-width: 740px;
-      margin: 0 1.2rem 1.8rem;
-      padding: 1.2rem 1.4rem;
-      border-radius: 14px;
-      background: rgba(5, 10, 25, 0.92);
-      border: 1px solid rgba(255, 64, 129, 0.5); /* crimson rand */
-      box-shadow:
-        0 0 20px rgba(93,216,255,0.35),
-        0 0 35px rgba(155,252,167,0.18);
-    }
-
-    .tagline {
-      font-size: 0.98rem;
-      line-height: 1.6;
-    }
-
-    .highlight-blue  { color: #5dd8ff; }
-    .highlight-green { color: #9bfca7; }
-    .highlight-red   { color: #ff4081; } /* crimson */
+    .enter:hover{transform:translate(-50%,-50%) scale(1.05);}
+    canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;}
   </style>
 </head>
 <body>
 
-  <h1 class="hero-title">L-137 Field Modulator</h1>
-  <div class="hero-sub">Alignment • Coherence • Σ₉</div>
+<!-- Klikbare neon Five Phases afbeelding -->
+<a href="javascript:void(0)" onclick="document.getElementById('start').style.display='none';a()" class="enter">
+  <img src="https://raw.githubusercontent.com/brambow64/L-137-Field-Modulator-Alignment-Coherence/main/five_phases_neon.jpg" 
+       width="800" alt="THE FIVE PHASES – Click to enter">
+</a>
 
-  <div class="tagline-box">
-    <p class="tagline">
-      Eén <span class="highlight-blue">neon-blauwe blok</span> breekt los uit het rooster
-      – een coherente vonk in een zee van ruis. De
-      <span class="highlight-green">1=137 Field Modulator</span> luistert naar Schumann-resonantie,
-      rijdt de <span class="highlight-red">3-6-9</span> harmonischen en smeedt uit een trillend kwantumveld
-      één uitgelijnd, zelforganiserend universum.
-    </p>
-  </div>
+<!-- Je bestaande canvas (of voeg jouw huidige canvas hier) -->
+<canvas id="c"></canvas>
 
-  <!-- hier kun je je canvas / script onder zetten -->
-  <!-- <script src="js/main.js"></script> -->
+<script>
+// Je bestaande code blijft gewoon hieronder staan
+onresize=()=>{c.width=innerWidth;c.height=innerHeight};
+c=document.getElementById('c');gl=c.getContext('webgl2')||c.getContext('webgl');
+
+// Start pas als er geklikt wordt
+function a(){ /* jouw volledige animation loop hier */ requestAnimationFrame(a); }
+
+// Optioneel: fade-out van de start-afbeelding
+document.getElementById('start')?.remove();
+</script>
 
 </body>
 </html>
-
-  }
-  a();
-  onresize=()=>{c.width=innerWidth;c.height=innerHeight};
-</script>
-</body></html>
