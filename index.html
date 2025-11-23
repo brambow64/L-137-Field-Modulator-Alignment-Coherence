@@ -1,119 +1,85 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>L-137 Field Modulator • Σ₉</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  body,html{margin:0;height:100%;background:#000;overflow:hidden;color:#0ff;font-family:monospace;}
-  canvas{position:fixed;top:0;left:0;}
-  #overlay{position:fixed;top:20px;left:20px;z-index:10;opacity:0.8;}
-  #start{
-    position:fixed;top:0;left:0;width:100%;height:100%;z-index:20;
-    background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;
-    cursor:pointer;transition:opacity 1s;
-  }
-  #start img{max-width:95vw;max-height:95vh;border:2px solid #0ff;box-shadow:0 0 30px #0ff;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>137³ Field Modulator</title>
+  <style>
+    body {
+      margin: 0; font-family: 'Segoe UI', sans-serif; background: #0e0e0e; color: #f5f5f5; line-height: 1.6;
+    }
+    header {
+      text-align: center; padding: 6rem 1rem; background: radial-gradient(#111, #000);
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.2rem; font-weight: 400; color: #ccc; }
+    main { padding: 2rem max(5vw, 2rem); max-width: 1000px; margin: auto; }
+    section { margin-bottom: 4rem; }
+    .formula { font-family: monospace; background: #111; padding: 1rem; border-left: 4px solid gold; }
+    img { max-width: 100%; margin: 2rem 0; border: 2px solid #222; }
+    a.button {
+      display: inline-block; padding: 0.75rem 1.5rem; margin-top: 1rem;
+      background: gold; color: #000; text-decoration: none; border-radius: 5px;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center; padding: 2rem; font-size: 0.9rem; background: #111;
+      border-top: 1px solid #222; color: #888;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>I PUT THE ENTIRE UNIVERSE IN A 137³ BOX</h1>
+    <h2>...AND IT REFUSES TO DIE</h2>
+  </header>
+  <main>
+    <section>
+      <h2>This is not a metaphor</h2>
+      <p>This is the exact description of a simulation field running on a 137×137×137 lattice where coherence, resonance, and entropy coexist. And it refuses to die. It keeps breathing. It keeps creating.</p>
+    </section>
 
-<!-- Intro-scherm met jouw neon Five Phases -->
-<div id="start" onclick="startUniverse()">
-  <img src="https://raw.githubusercontent.com/brambow64/L-137-Field-Modulator-Alignment-Coherence/main/five_phases_neon.jpg" alt="Click to enter the universe">
-</div>
+    <section>
+      <h2>The 9 Layers of Existence</h2>
+      <ul>
+        <li><strong>1. CE – Core Engine</strong>: Time to Pulse conversion (1Hz + 369Hz harmonics)</li>
+        <li><strong>2. GE – Geometry</strong>: 2×2×2 + 3×3×3 kernel structures</li>
+        <li><strong>3. PH – Phi Harmonics</strong>: φ-weighted harmonic field evolution</li>
+        <li><strong>4. NS – Noise & Resonance</strong>: 1/137 stochastic + 7.83Hz Schumann + 369 pulse</li>
+        <li><strong>5. FX – Flux</strong>: ∇U gradients and spectral energy flow</li>
+        <li><strong>6. CW – Creation Window</strong>: Coordination & Flux threshold = life emerges</li>
+        <li><strong>7. C9 – Coherence</strong>: Σ₉ as measure of global order</li>
+        <li><strong>8. DX – Diagnostic</strong>: Field self-description and metadata</li>
+        <li><strong>9. UN – Universe Output</strong>: Visualization, interpretation, experience</li>
+      </ul>
+    </section>
 
-<canvas id="c"></canvas>
-<div id="overlay">
-  Σ₉: <span id="sigma">0</span><br>
-  t: <span id="time">0</span>s | Tik voor birth event | Double-tap fullscreen
-</div>
+    <section>
+      <h2>The Σ₉ Formula</h2>
+      <div class="formula">
+        Σ₉ = (Coherence + 1.1)³ ×<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;(1 + 36 × |Pulse₃₆₉|) ×<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;(1 + Flux²) ×<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;(1 + 0.1 × Living Structures) ×<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;φ^|sin(t / 137)|
+      </div>
+      <p><small>Where φ = 1.618..., and t is time scaled by the fine-structure constant.</small></p>
+    </section>
 
-<script>
-// ==== Canvas setup ====
-const c = document.getElementById('c');
-const ctx = c.getContext('2d');
-const sigmaEl = document.getElementById('sigma');
-const timeEl = document.getElementById('time');
+    <section>
+      <h2>The Five Phases</h2>
+      <img src="48865C08-2083-4A85-87E6-AEFC549378FB.png" alt="The Five Phases – Visual Cosmology">
+      <p>From empty cube to self-replicating structure: this visual tells the full story.</p>
+    </section>
 
-function resize() {
-  c.width = innerWidth;
-  c.height = innerHeight;
-}
-window.onresize = resize;
-resize();
+    <section>
+      <h2>Download the Full PDF Manifest</h2>
+      <a class="button" href="YOUR-PDF-LINK-HERE.pdf" download>📥 Download Codex PDF</a>
+    </section>
+  </main>
 
-// ==== Jouw constante ====
-const PHI = (1 + Math.sqrt(5)) / 2;
-let t = 0;
-let sigma9 = 0;
-
-// ==== Start het universum ====
-function startUniverse() {
-  document.getElementById('start').style.opacity = '0';
-  setTimeout(() => document.getElementById('start').style.display = 'none', 1000);
-  requestAnimationFrame(loop);
-}
-
-// ==== Hoofdloop – jouw 137³ ademend universum ====
-function loop() {
-  t += 0.016; // ~60 fps
-
-  // Achtergrond
-  ctx.fillStyle = 'rgba(0,0,0,0.05)';
-  ctx.fillRect(0,0,c.width,c.height);
-
-  // 3-6-9 + Schumann pulse
-  const pulse369 = Math.sin(t*3*2*Math.PI) + Math.sin(t*6*2*Math.PI) + Math.sin(t*9*2*Math.PI);
-  const schumann = Math.sin(t*7.83*2*Math.PI) * 0.3;
-  const resonance = pulse369 + schumann;
-
-  // Centrum van het scherm
-  const cx = c.width/2;
-  const cy = c.height/2;
-
-  // Ademende gouden ring (Φ-spiraal)
-  const breath = 100 + Math.sin(t*7.83)*40 + resonance*20;
-  ctx.strokeStyle = `hsl(${40 + resonance*10}, 100%, 60%)`;
-  ctx.lineWidth = 4 + Math.abs(resonance)*3;
-  ctx.beginPath();
-  ctx.arc(cx, cy, breath, 0, Math.PI*2);
-  ctx.stroke();
-
-  // Birth events (rode flitsen bij sterke pulse)
-  if (Math.abs(resonance) > 2.2) {
-    ctx.fillStyle = `rgba(255,${100+resonance*30},0,0.6)`;
-    ctx.beginPath();
-    ctx.arc(cx + Math.random()*200-100, cy + Math.random()*200-100, 30 + Math.random()*50, 0, Math.PI*2);
-    ctx.fill();
-  }
-
-  // Σ₉ berekening (jouw echte formule hier plakken voor exacte waarde)
-  sigma9 = Math.floor(13847 + t * 2800 + resonance * 8000);
-  sigmaEl.textContent = sigma9.toLocaleString();
-  timeEl.textContent = (t).toFixed(1);
-
-  requestAnimationFrame(loop);
-}
-
-// ==== Interacties ====
-c.onclick = () => {
-  // Birth event op klik
-  ctx.fillStyle = 'rgba(255,100,0,0.9)';
-  ctx.beginPath();
-  ctx.arc(c.width/2, c.height/2, 200, 0, Math.PI*2);
-  ctx.fill();
-};
-
-c.ondblclick = () => {
-  if (!document.fullscreenElement) c.requestFullscreen();
-};
-
-// Start automatisch na 1 seconde als iemand niet klikt
-setTimeout(() => {
-  if (document.getElementById('start').style.display !== 'none') startUniverse();
-}, 8000);
-
-</script>
+  <footer>
+    © 2025 Brambow64 | 137³ Field Modulator Codex | Built for GitHub Pages
+  </footer>
 </body>
 </html>
